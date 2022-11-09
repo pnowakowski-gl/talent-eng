@@ -11,5 +11,18 @@ Install required packages with command:
 '''
 pip install -r requirements.txt
 '''
+Run the test from the root folder with the command:
+'''
+pytest
+'''
+
 # Structure of the Framework
-src/config - configuration of the Framework
+src/config - contains configuration of the framework
+src/data - contains data of the framework
+src/models - contains framework's models
+src/providers - contains providers for the framework
+tests/ - localization of the tests to run
+
+# Before commit
+run isort .
+run black .

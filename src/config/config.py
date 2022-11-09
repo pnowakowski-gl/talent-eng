@@ -1,5 +1,12 @@
 from typing import Any
-from config_provider import JSONConfigProvider, OSConfigProvider
+
+if __name__ == "__main__":
+    from config_provider import JSONConfigProvider, OSConfigProvider
+else:
+    from src.providers.jsonconfigprovider import JSONConfigProvider
+    from src.providers.osconfigprovider import OSConfigProvider
+
+import requests
 
 
 class Config:
@@ -11,24 +18,26 @@ class Config:
     def __init__(self, config_providers: list) -> None:
         self.config_providers = config_providers
         self.conf_dict = {}
-        self.keys_to_register = ["BASE_URL", "SQL_CONNECTION_STRING"]
+        self.keys_to_register = [
+            "BASE_URL",
+            "SQL_CONNECTION_STRING",
+            "NOSQL_CONNECTION_STRING",
+        ]
 
         for key in self.keys_to_register:
             self._register(key)
 
-    def get(self, item_name: str) -> Any:
-        """
-        Gets value of a key from config dictionary and returns it.
-        """
+    def __getattr__(self, item_name: str) -> Any:
         try:
             return self.conf_dict[item_name]
         except KeyError:
-            return f"{item_name} is missing in a config."
+            return f"{item_name} is not in the configuration dictionary."
 
     def _register(self, item_name: str) -> None:
         """
         Iterate through list of config providers to search for key and append it to configuration
-        dictionary if it has a value.
+        dictionary if it has a value. Raise value error if the key is registered by is missing
+        in a config.
         """
         for provider in self.config_providers:
             value = provider.get(item_name)
@@ -36,9 +45,13 @@ class Config:
                 self.conf_dict[item_name] = value
                 return
 
-config = Config([OSConfigProvider, JSONConfigProvider])
-print(config.get("BASE_URL"))
-print(config.get("SQL_CONNECTION_STRING"))
-print(config.get("BASE_URLS"))
-print(config.get("SQL_CONNECTION_STRINGS"))
+        raise ValueError(f"{item_name} is missing in a config.")
 
+
+config = Config([OSConfigProvider, JSONConfigProvider])
+if __name__ == "__main__":
+    print(config.BASE_URL)
+    print(config.BASE_URLS)
+    print(config.SQL_CONNECTION_STRING)
+    # print(config.get("BASE_URLS"))
+    # print(config.get("SQL_CONNECTION_STRINGS"))
