@@ -1,24 +1,27 @@
-import pytest
-
 from src.config.config import config
 from src.models.sites import Sites
+import pytest
 
-
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def base_url_fixture():
-    sites = Sites(config.BASE_URL)
-    added = sites.add_to_database()
+    try:
+        sites = Sites(config.BASE_URL)
+        sites.add_to_database()
 
-    yield sites, added
+        yield sites
 
-    sites.remove_from_database()
-
+        sites.remove_from_database()
+    except Exception as e:
+        yield e
 
 @pytest.fixture(scope="function")
 def sql_fixture():
-    sites = Sites(config.SQL_CONNECTION_STRING)
-    sites.add_to_database()
+    try:
+        sites = Sites(config.SQL_CONNECTION_STRING)
+        sites.add_to_database()
+        
+        yield sites
 
-    yield sites
-
-    sites.remove_from_database()
+        sites.remove_from_database()
+    except Exception as e:
+        yield e

@@ -1,8 +1,8 @@
 import os
 from typing import Any
+from src.providers.baseproviderclass import BaseProviderClass
 
-
-class OSConfigProvider:
+class OSConfigProvider(BaseProviderClass):
     @staticmethod
     def get(item_name: str) -> Any:
         """

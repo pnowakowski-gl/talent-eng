@@ -1,12 +1,7 @@
 from typing import Any
 
-if __name__ == "__main__":
-    from config_provider import JSONConfigProvider, OSConfigProvider
-else:
-    from src.providers.jsonconfigprovider import JSONConfigProvider
-    from src.providers.osconfigprovider import OSConfigProvider
-
-import requests
+from src.providers.jsonconfigprovider import JSONConfigProvider
+from src.providers.osconfigprovider import OSConfigProvider
 
 
 class Config:
@@ -49,9 +44,3 @@ class Config:
 
 
 config = Config([OSConfigProvider, JSONConfigProvider])
-if __name__ == "__main__":
-    print(config.BASE_URL)
-    print(config.BASE_URLS)
-    print(config.SQL_CONNECTION_STRING)
-    # print(config.get("BASE_URLS"))
-    # print(config.get("SQL_CONNECTION_STRINGS"))
