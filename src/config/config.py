@@ -17,6 +17,7 @@ class Config:
             "BASE_URL",
             "SQL_CONNECTION_STRING",
             "NOSQL_CONNECTION_STRING",
+            "GITHUB_URL",
         ]
 
         for key in self.keys_to_register:
