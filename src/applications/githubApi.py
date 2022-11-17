@@ -9,7 +9,10 @@ from src.config.config import config
 class GitHubApi:
     API_KEY = API_KEY()
     DEFAULT_HEADER = {"accept": "application/vnd.github+json"}
-    DEFAULT_AUTH_HEADER = {"authorization": f"bearer {API_KEY}"}
+    DEFAULT_AUTH_HEADER = {
+        "accept": "application/vnd.github+json",
+        "authorization": f"bearer {API_KEY}",
+    }
     REPOSITORY = "pnowakowski-gl"
 
     def __init__(self) -> None:
@@ -29,7 +32,6 @@ class GitHubApi:
         r = requests.post(
             url=f"http://{config.GITHUB_URL}/user/repos",
             headers=self.DEFAULT_AUTH_HEADER,
-            json={"name": repo_name, "description": desc},
         )
         r.raise_for_status()
 

@@ -12,8 +12,8 @@ def test_repos_can_be_find(find_repo):
     assert find_repo == MY_REPO_ID
 
 
-def test_repo_was_created(add_repo):
-    assert add_repo == CREATED
+def test_repo_was_created(create_new):
+    assert create_new == CREATED
 
 
 def test_repo_was_deleted(delete_existing):
