@@ -1,6 +1,8 @@
 import os
 from typing import Any
+
 from src.providers.baseproviderclass import BaseProviderClass
+
 
 class OSConfigProvider(BaseProviderClass):
     @staticmethod
