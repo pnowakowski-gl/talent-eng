@@ -32,6 +32,7 @@ class GitHubApi:
         r = requests.post(
             url=f"http://{config.GITHUB_URL}/user/repos",
             headers=self.DEFAULT_AUTH_HEADER,
+            json={"name": repo_name, "description": desc},
         )
         r.raise_for_status()
 

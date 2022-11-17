@@ -6,7 +6,7 @@ def delete_repo(repo_name: str) -> None:
         url=f"https://api.github.com/repos/pnowakowski-gl/{repo_name}",
         headers={
             "accept": "application/vnd.github+json",
-            "authorization": "bearer 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",
+            "authorization": "bearer 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",
         },
     )
     r.raise_for_status()
@@ -17,7 +17,7 @@ def delete_repo(repo_name: str) -> None:
 def create_repo() -> int:
     r = requests.post(
         url=f"https://api.github.com/user/repos",
-        headers={"authorization": "bearer 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"},
+        headers={"authorization": "bearer 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"},
         json={"name": "new_repo", "description": "new repo created via api call"},
     )
     r.raise_for_status()
