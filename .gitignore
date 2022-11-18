@@ -1,7 +1,6 @@
 #pawel.json
-future_test.py
 sandbox.py
-api_key.py
+api_key.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
