@@ -1,7 +1,9 @@
 import json
 import os
 from typing import Any
+
 from src.providers.baseproviderclass import BaseProviderClass
+
 
 class JSONConfigProvider(BaseProviderClass):
     @staticmethod

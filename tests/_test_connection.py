@@ -4,7 +4,7 @@ import requests
 # CONSTS
 BASE_URL = "http://google.com"
 DB_SIZE = 1
-REQUESTS_EXCEPTIONS = requests.exceptions.HTTPError('No connection found')
+REQUESTS_EXCEPTIONS = requests.exceptions.HTTPError("No connection found")
 
 
 # TESTS
