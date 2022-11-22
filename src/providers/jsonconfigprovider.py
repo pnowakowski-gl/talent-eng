@@ -1,21 +1,11 @@
+import json
 import os
 from typing import Any
-import json
+from src.providers.baseproviderclass import BaseProviderClass
 
-
-class OSConfigProvider:
+class JSONConfigProvider(BaseProviderClass):
     @staticmethod
-    def get(item_name: str) -> Any:
-        """
-        Get enviroment variable key and return its value
-        """
-        value = os.getenv(item_name)
-        return value
-
-
-class JSONConfigProvider:
-    @staticmethod
-    def _read_config(config_path):
+    def _read_config(config_path: str) -> json:
         """
         Read the .json config and return it
         """
@@ -25,7 +15,7 @@ class JSONConfigProvider:
     @staticmethod
     def get(item_name: str) -> Any:
         """
-        Get the selected item (key) from json and return its value. Informs if json file does not exists
+        Get the selected item (key) from json and return its value. Informs if json file does not exists.
         """
         relative_path = os.path.dirname(__file__)
         json_relative_path = os.path.abspath(
