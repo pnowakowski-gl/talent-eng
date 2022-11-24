@@ -1,6 +1,6 @@
 #pawel.json
 sandbox.py
-api_key.env
+secrets.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

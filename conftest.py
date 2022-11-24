@@ -1,6 +1,9 @@
+import time
+
 import pytest
 
 from src.applications.githubApi import GitHubApi
+from src.applications.githubUI import GitHubUI
 from src.config.config import config
 from src.models.sites import Sites
 
@@ -56,3 +59,14 @@ def delete_existing_repo():
     del_repo = githubApi.delete_existing_repository("new_repo")
     yield del_repo
     print('Repository "new_repo" was deleted.')
+
+
+@pytest.fixture()
+def github_ui(password):
+    github_ui_app = GitHubUI()
+    github_ui_app.open_base_page()
+    github_ui_app.goto_login_page()
+    time.sleep(3)
+    github_ui_app.login_to_page(config.GIT_USERNAME, password)
+    time.sleep(3)
+    yield github_ui_app

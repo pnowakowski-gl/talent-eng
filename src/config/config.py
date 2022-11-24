@@ -17,7 +17,9 @@ class Config:
             "BASE_URL",
             "SQL_CONNECTION_STRING",
             "NOSQL_CONNECTION_STRING",
-            "GITHUB_URL",
+            "GITHUB_URL_API",
+            "GITHUB_URL_UI",
+            "GIT_USERNAME",
         ]
 
         for key in self.keys_to_register:

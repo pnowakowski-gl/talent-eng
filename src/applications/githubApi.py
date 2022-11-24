@@ -1,18 +1,10 @@
-import os
-
 import requests
-from dotenv import load_dotenv
 
+from envs_config.secrets import GIT_API_KEY
 from src.config.config import config
 
 
 class GitHubApi:
-    RELATIVE_PATH = os.path.dirname(__file__)
-    GIT_API_KEY_PATH = os.path.abspath(
-        os.path.join(RELATIVE_PATH, "..", "..", "envs_config", "api_key.env")
-    )
-    load_dotenv(dotenv_path=GIT_API_KEY_PATH)
-    GIT_API_KEY = os.getenv("GIT_API_KEY")
     DEFAULT_HEADER = {"accept": "application/vnd.github+json"}
     DEFAULT_AUTH_HEADER = {
         "accept": "application/vnd.github+json",
