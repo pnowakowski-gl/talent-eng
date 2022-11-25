@@ -2,10 +2,21 @@ import time
 
 import pytest
 
-from src.applications.githubApi import GitHubApi
-from src.applications.githubUI import GitHubUI
+from src.applications.github_api import GitHubApi
+from src.applications.github_ui import GitHubUI
 from src.config.config import config
 from src.models.sites import Sites
+from src.providers.browser.browser_provider import BrowserProvider
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser",
+        action="store",
+        choices=("chrome", "ff", "edge"),
+        default="chrome",
+        help="Add --browser=BROWSER_NAME to prompt command. Available browsers are chrome, ff, edge",
+    )
 
 
 @pytest.fixture(scope="function")
@@ -62,11 +73,10 @@ def delete_existing_repo():
 
 
 @pytest.fixture()
-def github_ui(password):
-    github_ui_app = GitHubUI()
+def github_ui(request):
+    browser = request.config.getoption("--browser")
+    github_ui_app = GitHubUI(browser)
     github_ui_app.open_base_page()
     github_ui_app.goto_login_page()
-    time.sleep(3)
-    github_ui_app.login_to_page(config.GIT_USERNAME, password)
-    time.sleep(3)
     yield github_ui_app
+    github_ui_app.close_current_browser()
