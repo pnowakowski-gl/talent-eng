@@ -14,10 +14,11 @@ pip install -r requirements.txt
 '''
 Run the test from the root folder with the command:
 '''
-pytest
+pytest -v -s
 '''
 
 # Structure of the Framework
+src/applications - contains application of the framework
 src/config - contains configuration of the framework
 src/data - contains data of the framework
 src/models - contains framework's models
