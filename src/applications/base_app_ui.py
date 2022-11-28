@@ -2,16 +2,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from src.providers.browser.browser_provider import BrowserProvider
-
 
 class BaseUIApp:
     """
     Connects abstract methods with selenium tool to automate navigation on the web.
     """
 
-    def __init__(self, browser) -> None:
-        self.driver = BrowserProvider.get_browser(browser)
+    def __init__(self, driver) -> None:
+        self.driver = driver
         self.driver.maximize_window()
 
     def open_page(self, page_name):
