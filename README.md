@@ -18,14 +18,14 @@ pytest -v -s
 '''
 
 # Structure of the Framework
-src/applications - contains application of the framework
-src/config - contains configuration of the framework
-src/data - contains data of the framework
-src/models - contains framework's models
-src/providers - contains providers for the framework
-tests/ - localization of the tests to run
+src/applications - contains application of the framework__
+src/config - contains configuration of the framework__
+src/data - contains data of the framework__
+src/models - contains framework's models__
+src/providers - contains providers for the framework__
+tests/ - localization of the tests to run__
 
 # Before commit
-Please do commands below before commit
-run isort .
-run black .
+Please do commands below before commit__
+run isort .__
+run black .__

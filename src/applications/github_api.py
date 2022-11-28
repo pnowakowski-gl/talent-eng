@@ -1,13 +1,12 @@
 import requests
 
-from envs_config.secrets import GIT_API_KEY
 from src.config.config import config
 
 
 class GitHubApi:
-    DEFAULT_AUTH_HEADER = {
+    DEFAULT_HEADER = {
         "accept": "application/vnd.github+json",
-        "authorization": f"bearer {GIT_API_KEY}",
+        "authorization": f"bearer {config.GIT_API_KEY}",
     }
     GIT_USER_NAME = "pnowakowski-gl"
 
@@ -17,7 +16,7 @@ class GitHubApi:
         """
         r = requests.get(
             url=f"{config.GITHUB_URL}/search/repositories",
-            headers=self.DEFAULT_AUTH_HEADER,
+            headers=self.DEFAULT_HEADER,
             params={"q": repo_name},
         )
         r.raise_for_status()
@@ -30,7 +29,7 @@ class GitHubApi:
         """
         r = requests.get(
             url=f"{config.GITHUB_URL}/users/{user}/repos",
-            headers=self.DEFAULT_AUTH_HEADER,
+            headers=self.DEFAULT_HEADER,
         )
         r.raise_for_status()
 
@@ -46,7 +45,7 @@ class GitHubApi:
         if repo_name not in self.find_users_repos():
             r = requests.post(
                 url=f"{config.GITHUB_URL}/user/repos",
-                headers=self.DEFAULT_AUTH_HEADER,
+                headers=self.DEFAULT_HEADER,
                 json={"name": repo_name, "description": desc},
             )
             r.raise_for_status()
@@ -64,7 +63,7 @@ class GitHubApi:
         if repo_name in self.find_users_repos():
             r = requests.delete(
                 url=f"{config.GITHUB_URL}/repos/{self.GIT_USER_NAME}/{repo_name}",
-                headers=self.DEFAULT_AUTH_HEADER,
+                headers=self.DEFAULT_HEADER,
             )
             r.raise_for_status()
 
