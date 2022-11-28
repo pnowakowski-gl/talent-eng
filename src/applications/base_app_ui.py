@@ -1,7 +1,8 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
+from src.providers.browser.browser_provider import BrowserProvider
 
 
 class BaseUIApp:
@@ -9,9 +10,8 @@ class BaseUIApp:
     Connects abstract methods with selenium tool to automate navigation on the web.
     """
 
-    def __init__(self) -> None:
-        self.service_obj = Service(ChromeDriverManager().install())
-        self.driver = webdriver.Chrome(service=self.service_obj)
+    def __init__(self, browser) -> None:
+        self.driver = BrowserProvider.get_browser(browser)
         self.driver.maximize_window()
 
     def open_page(self, page_name):
@@ -40,3 +40,16 @@ class BaseUIApp:
         """
         el = self.driver.find_element(locator_type, locator_name)
         el.send_keys(text)
+
+    def wait_for_element_to_be_present(self, locator_type, locator_name, timer=10):
+        WebDriverWait(self.driver, timer).until(
+            EC.presence_of_element_located(
+                (
+                    locator_type,
+                    locator_name,
+                )
+            )
+        )
+
+    def close_browser(self):
+        self.driver.close()

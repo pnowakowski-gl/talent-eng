@@ -5,7 +5,6 @@ from src.config.config import config
 
 
 class GitHubApi:
-    DEFAULT_HEADER = {"accept": "application/vnd.github+json"}
     DEFAULT_AUTH_HEADER = {
         "accept": "application/vnd.github+json",
         "authorization": f"bearer {GIT_API_KEY}",
