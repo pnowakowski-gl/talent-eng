@@ -9,13 +9,9 @@ This is test framework created during Talent Engine 2.0
 
 # How to run the tests
 Install required packages with command:<br>
-'''
 pip install -r requirements.txt<br>
-'''
 Run the test from the root folder with the command:<br>
-'''
 pytest -v -s --browser=BROWSER_NAME<br>
-'''
 --browser=BROWSER_NAME can be skipped to run tests on default browser (chrome)
 
 # Structure of the Framework
