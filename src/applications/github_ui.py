@@ -2,9 +2,9 @@ from selenium.webdriver.common.by import By
 
 from src.applications.base_app_ui import BaseUIApp
 from src.pages.forgot_password_page import ForgotPasswordPage
-from src.pages.logged_in_page import LoggedInPage
+from src.pages.pnowakowski_logged_in import PnowakowskiLoggedIn
 from src.pages.login_page import LoginPage
-from src.pages.signup_page import SignupPage
+from src.pages.sign_in_page import SignInPage
 
 
 class GitHubUI(BaseUIApp):
@@ -16,17 +16,20 @@ class GitHubUI(BaseUIApp):
         super().__init__(browser)
         self.login_page = LoginPage(self)
         self.forgot_password_page = ForgotPasswordPage(self)
-        self.signup_page = SignupPage(self)
-        self.loggedin_page = LoggedInPage(self)
+        self.signin_page = SignInPage(self)
+        self.loggedin_page = PnowakowskiLoggedIn(self)
 
     def open_base_page(self) -> None:
-        self.signup_page.go_to_page()
+        self.signin_page.go_to_page()
 
     def go_to_login_page(self) -> None:
         self.login_page.go_to_page()
 
     def go_to_forgot_password_page(self) -> None:
         self.forgot_password_page.go_to_page()
+
+    def go_to_sign_up_page(self) -> None:
+        self.signup_page.go_to_page()
 
     def login_to_page(self, username: str, password: str) -> None:
         self.login_page.sign_in(username, password)
@@ -47,8 +50,17 @@ class GitHubUI(BaseUIApp):
         self.wait_for_element_to_be_present(locator_type, locator_name)
         return self.get_element(locator_type, locator_name).text
 
-    def search_in_github(self, text):
-        self.signup_page.search_github(text)
+    def user_is_logged_in(self):
+        return self.loggedin_page.user_logged_in()
+
+    def github_search_is_working(self):
+        return self.signin_page.github_search_is_working()
+
+    def sign_in_button_is_present(self):
+        return self.signin_page.sign_in_button_is_present()
+
+    def incorrect_credentials_text(self):
+        return self.login_page.incorrect_credentials_text()
 
     def type_email_you_forgot_password_for(self, text):
         self.forgot_password_page.type_email(text)

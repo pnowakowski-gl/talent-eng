@@ -8,24 +8,26 @@
 This is test framework created during Talent Engine 2.0
 
 # How to run the tests
-Install required packages with command:
-'''
-pip install -r requirements.txt
-'''
-Run the test from the root folder with the command:
-'''
-pytest -v -s
-'''
+Install required packages with command:<br>
+pip install -r requirements.txt<br>
+Run the test from the root folder with the command:<br>
+pytest -v -s --browser=BROWSER_NAME<br>
+optional commands:<br>
+-v - verbose, traces all import statements<br>
+-s - prints what's in test<br>
+--browser=BROWSER_NAME - browser name can be replaces with available browser, default is Chrome
 
 # Structure of the Framework
-src/applications - contains application of the framework__
-src/config - contains configuration of the framework__
-src/data - contains data of the framework__
-src/models - contains framework's models__
-src/providers - contains providers for the framework__
-tests/ - localization of the tests to run__
+envs_config - localization of json and secrets used in config<br>
+src/applications - contains application of the framework<br>
+src/config - contains configuration of the framework<br>
+src/data - contains data of the framework<br>
+src/models - contains framework's models<br>
+src/pages - contains pages used by applications<br>
+src/providers - contains providers (config and browser) for the framework<br>
+tests/ - localization of the tests to run
 
 # Before commit
-Please do commands below before commit__
-run isort .__
-run black .__
+Please do commands below before commit<br>
+run isort .<br>
+run black .

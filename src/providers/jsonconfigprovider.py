@@ -20,9 +20,7 @@ class JSONConfigProvider(BaseProviderClass):
         Get the selected item (key) from json and return its value. Informs if json file does not exists.
         """
         relative_path = os.path.dirname(__file__)
-        json_relative_path = os.path.abspath(
-            os.path.join(relative_path, "..", "..", "envs_config", "dev.json")
-        )
+        json_relative_path = os.path.abspath(os.path.join(relative_path, "..", "..", "envs_config", "dev.json"))
         try:
             value = JSONConfigProvider._read_config(json_relative_path)
             return value.get(item_name)

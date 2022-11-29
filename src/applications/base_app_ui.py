@@ -23,12 +23,14 @@ class BaseUIApp:
         Gets element from driver page with locator type and locator name.
         Return webelement.
         """
+        self.wait_for_element_to_be_present(locator_type, locator_name)
         return self.driver.find_element(locator_type, locator_name)
 
     def click(self, locator_type: By, locator_name: str):
         """
         Gets element from driver page with locator type and locator name and click it.
         """
+        self.wait_for_element_to_be_present(locator_type, locator_name)
         el = self.driver.find_element(locator_type, locator_name)
         el.click()
 
@@ -36,6 +38,7 @@ class BaseUIApp:
         """
         Gets element from driver page with locator type and locator name and types given text.
         """
+        self.wait_for_element_to_be_present(locator_type, locator_name)
         el = self.driver.find_element(locator_type, locator_name)
         el.send_keys(text)
 

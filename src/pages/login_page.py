@@ -23,7 +23,6 @@ class LoginPage:
         self.ui_app.open_page(config.GITHUB_URL_UI + self.LOGIN_PAGE)
 
     def sign_in(self, username: str, password: str) -> None:
-        self.ui_app.wait_for_element_to_be_present(*self.username_field)
         self.ui_app.enter_text(*self.username_field, username)
         self.ui_app.enter_text(*self.password_field, password)
         self.ui_app.click(*self.sign_in_button)
@@ -33,3 +32,6 @@ class LoginPage:
 
     def go_to_create_an_account_page(self):
         self.ui_app.click(*self.create_an_account)
+
+    def incorrect_credentials_text(self):
+        return self.ui_app.find_text(*self.incorrect_password_msg)

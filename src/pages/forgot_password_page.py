@@ -19,9 +19,7 @@ class ForgotPasswordPage:
         self.ui_app.open_page(config.GITHUB_URL_UI + self.FORGOT_PASSWORD_PAGE)
 
     def type_email(self, text):
-        self.ui_app.wait_for_element_to_be_present(*self.email_field)
-        el = self.ui_app.get_element(*self.email_field)
-        el.send_keys(text)
+        self.ui_app.enter_text(*self.email_field, text)
 
     def reset_password_button_is_enabled(self):
         return self.ui_app.get_element(*self.send_password_reset_email).is_enabled()

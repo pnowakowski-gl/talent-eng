@@ -53,9 +53,7 @@ class Config:
 
     def _load_secrets(self):
         relative_path = os.path.dirname(__file__)
-        secrets_path = os.path.abspath(
-            os.path.join(relative_path, "..", "envs_config", "secrets.env")
-        )
+        secrets_path = os.path.abspath(os.path.join(relative_path, "..", "..", "envs_config", "secrets.env"))
         load_dotenv(dotenv_path=secrets_path)
 
 

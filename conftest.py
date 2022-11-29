@@ -53,13 +53,9 @@ def get_repo_list():
 @pytest.fixture(scope="session")
 def create_new_repo():
     githubApi = GitHubApi()
-    add_repo = githubApi.create_new_repository(
-        "new_repo", "new repo created via api call"
-    )
+    add_repo = githubApi.create_new_repository("new_repo", "new repo created via api call")
     yield add_repo
-    print(
-        'Repository "new_repo" with description "new repo created via api call" was created.'
-    )
+    print('Repository "new_repo" with description "new repo created via api call" was created.')
 
 
 @pytest.fixture(scope="session")
