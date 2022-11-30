@@ -7,4 +7,4 @@ class BaseProviderClass:
         """
         If get method is not implement it raises an error.
         """
-        raise NotImplementedError("get method is not implemented")
+        raise NotImplementedError(f"Get method for {item_name} is not implemented")
